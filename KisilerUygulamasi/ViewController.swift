@@ -64,6 +64,20 @@ class ViewController: UIViewController {
             print(error)
         }
     }
+    
+// Zorlandim.
+    func aramaYap(kisi_ad:String){
+        let fetchRequest:NSFetchRequest<Kisiler> = Kisiler.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "kisi_ad CONTAINS %@", kisi_ad)
+        
+        do{
+            kisilerListe = try context.fetch(Kisiler.fetchRequest())
+        }catch{
+            print(error)
+        }
+    
+    }
+    
 
 }
 
@@ -121,6 +135,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
 extension ViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("Arama Sonucu = \(searchText)")
+        
+        if searchText == ""{
+            tumKisilerAlGuncelle()
+            
+        }else{
+            aramaYap(kisi_ad: searchText)
+            self.kisilerTabelView.reloadData()
+        }
+        
+
     }
 }
 
