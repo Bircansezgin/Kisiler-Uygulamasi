@@ -69,9 +69,8 @@ class ViewController: UIViewController {
     func aramaYap(kisi_ad:String){
         let fetchRequest:NSFetchRequest<Kisiler> = Kisiler.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "kisi_ad CONTAINS %@", kisi_ad)
-        
         do{
-            kisilerListe = try context.fetch(Kisiler.fetchRequest())
+            kisilerListe = try context.fetch(fetchRequest)
         }catch{
             print(error)
         }
@@ -138,7 +137,7 @@ extension ViewController: UISearchBarDelegate{
         
         if searchText == ""{
             tumKisilerAlGuncelle()
-            
+            self.kisilerTabelView.reloadData()
         }else{
             aramaYap(kisi_ad: searchText)
             self.kisilerTabelView.reloadData()
