@@ -8,7 +8,7 @@
 import UIKit
 
 class KisiEditViewController: UIViewController {
-    // Burda textField'larin isimlerini yanlis yazmisim!
+    let context = appdelegete.persistentContainer.viewContext
    
     @IBOutlet weak var kisiUpdateTextFieldName: UITextField!
     @IBOutlet weak var kisiUptadeTextField: UITextField!
@@ -27,8 +27,28 @@ class KisiEditViewController: UIViewController {
     
     @IBAction func updateButton(_ sender: Any) {
         
+        if let k = kisi, let ad = kisiUpdateTextFieldName.text, let telNo = kisiUptadeTextField.text{
         
+
+            
+            k.kisi_ad = ad
+            k.kisi_tel = telNo
+            appdelegete.saveContext()
+            guncellendiUyari(title: "", message: "Guncelleme Basarili")
+            
+            
+        }
         
+    }
+    
+    
+    func guncellendiUyari(title:String, message:String){
+        let alertEklendi = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Tamam", style: .default) { UIAlertAction in
+            self.navigationController?.popViewController(animated: true)
+        }
+            alertEklendi.addAction(okButton)
+            self.present(alertEklendi, animated: true)
     }
     
 }
