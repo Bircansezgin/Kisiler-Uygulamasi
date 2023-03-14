@@ -89,6 +89,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             
             self.tumKisilerAlGuncelle()
             self.kisilerTabelView.reloadData()
+            print("Silme islemi Tamamlandi")
             
         }
         
