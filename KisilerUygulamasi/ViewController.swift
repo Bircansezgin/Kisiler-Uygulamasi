@@ -41,9 +41,19 @@ class ViewController: UIViewController {
         kisilerTabelView.reloadData()
     }
     
-    
+// !!!!!!!
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indeks = sender as? Int
         
+        if segue.identifier == "toDetay"{
+            let gidilecekVC = segue.destination as! KisiDetailsViewController
+            gidilecekVC.kisi = kisilerListe[indeks!]
+        }
+        
+        if segue.identifier == "toGuncelle"{
+            let gidilecekVC = segue.destination as! KisiEditViewController
+            gidilecekVC.kisi = kisilerListe[indeks!]
+        }
     }
     
 // Calisma amacaci! Kisi eklenince DataB eklensin ve tableView'da gosterilmesini istiyoruz.
@@ -75,6 +85,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
 // Sutun Secilince !!
+//DEtAY
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toDetay", sender: indexPath.row)
     }
@@ -96,6 +107,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         // Guncelleme buttonuna basilinca
         let guncelleAction = UIContextualAction(style: .normal, title: "Guncelle") { (UIContextualAction, view,  boolValue) in
             self.performSegue(withIdentifier: "toGuncelle", sender: indexPath.row)
+            
+            
+            
         }
         
         return UISwipeActionsConfiguration(actions:  [silAction, guncelleAction])

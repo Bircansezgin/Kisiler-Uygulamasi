@@ -223,7 +223,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Person Update" id="NeN-Rc-1HZ"/>
                     <connections>
-                        <outlet property="kisiUpdateTextFeild" destination="zEs-Fk-5Ao" id="yH9-uR-8Tx"/>
+                        <outlet property="kisiUpdateTextFieldName" destination="f7m-qP-KU7" id="s5E-qL-qTd"/>
                         <outlet property="kisiUptadeTextField" destination="zEs-Fk-5Ao" id="0ec-Sb-cpH"/>
                     </connections>
                 </viewController>
